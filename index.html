@@ -1,0 +1,1517 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentawai Tour — Wild, Raw, Real</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .fade-up:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+
+      .fade-up:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+
+      .testimonial-slider {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        padding: 10px 0;
+        scrollbar-width: none;
+      }
+
+      .testimonial-slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .testimonial-card {
+        min-width: 380px;
+        max-width: 380px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+      }
+
+      .testimonial-prev,
+      .testimonial-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 20;
+
+        width: 48px;
+        height: 48px;
+
+        border: none;
+        border-radius: 999px;
+
+        background: var(--green-deep);
+        color: white;
+
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .testimonial-prev:hover,
+      .testimonial-next:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      .testimonial-prev {
+        left: -24px;
+      }
+
+      .testimonial-next {
+        right: -24px;
+      }
+
+      @media (max-width: 768px) {
+        .testimonial-card {
+          min-width: 90%;
+          max-width: 90%;
+        }
+
+        .testimonial-prev,
+        .testimonial-next {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================ -->
+    <!-- NAVBAR -->
+    <!-- ============================================ -->
+    <nav id="navbar" class="navbar">
+      <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-full flex items-center justify-center"
+            style="background: var(--green-sage)"
+          >
+            <span class="text-white font-bold text-sm font-mono">MO</span>
+          </div>
+          <span
+            class="text-white font-bold text-lg tracking-tight"
+            style="font-family: &quot;Playfair Display&quot;, serif"
+            >Mentawai Tour</span
+          >
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="pages/packages.html" class="nav-link">Packages</a>
+          <a href="#testimonials" class="nav-link">Reviews</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <button onclick="openBooking()" class="btn-primary text-sm py-2 px-5">
+            Book Now
+          </button>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="menuBtn" class="md:hidden text-white p-2">
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+      <button id="menuClose" class="absolute top-6 right-6 text-white p-2">
+        <svg
+          width="28"
+          height="28"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" />
+        </svg>
+      </button>
+      <a href="index.html" class="nav-link mobile-nav-link">Home</a>
+      <a href="pages/packages.html" class="nav-link mobile-nav-link"
+        >Packages</a
+      >
+      <a href="#testimonials" class="nav-link mobile-nav-link">Reviews</a>
+      <a href="#contact" class="nav-link mobile-nav-link">Contact</a>
+      <button
+        onclick="
+          openBooking();
+          mobileMenu.classList.remove('open');
+        "
+        class="btn-primary mt-4"
+      >
+        Book Now
+      </button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- HERO -->
+    <!-- ============================================ -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+
+      <!-- Floating decorative elements -->
+      <div class="absolute top-1/4 right-10 opacity-10 hidden lg:block">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            stroke="white"
+            stroke-width="1"
+            stroke-dasharray="4 8"
+          />
+          <circle
+            cx="100"
+            cy="100"
+            r="60"
+            stroke="white"
+            stroke-width="0.5"
+            stroke-dasharray="2 6"
+          />
+        </svg>
+      </div>
+
+      <div
+        class="relative z-10 h-full flex flex-col justify-center px-6 max-w-7xl mx-auto pt-24"
+      >
+        <div>
+          <div class="hero-badge">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor">
+              <circle cx="4" cy="4" r="4" />
+            </svg>
+            West Sumatra, Indonesia
+          </div>
+
+          <h1 class="hero-title mb-6">
+            Where the Jungle<br />
+            <em>Meets the Wave.</em>
+          </h1>
+
+          <p class="hero-sub mb-10">
+            Leave the tourist trail behind. Mentawai is raw, alive, and unlike
+            anywhere else on earth — meet the Sakkudei, surf uncharted breaks,
+            and sleep under a sky full of stars.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="pages/packages.html" class="btn-primary">
+              Explore Packages
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  d="M5 12h14M12 5l7 7-7 7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a href="#features" class="btn-outline">How It Works</a>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="flex flex-wrap gap-8 mt-12">
+            <div>
+              <p
+                class="text-white font-bold text-2xl"
+                style="font-family: &quot;Playfair Display&quot;, serif"
+              >
+                500+
+              </p>
+              <p
+                class="text-xs text-white/50 font-mono uppercase tracking-wider"
+              >
+                Happy Travelers
+              </p>
+            </div>
+            <div class="w-px bg-white/20"></div>
+            <div>
+              <p
+                class="text-white font-bold text-2xl"
+                style="font-family: &quot;Playfair Display&quot;, serif"
+              >
+                12
+              </p>
+              <p
+                class="text-xs text-white/50 font-mono uppercase tracking-wider"
+              >
+                Years Experience
+              </p>
+            </div>
+            <div class="w-px bg-white/20"></div>
+            <div>
+              <p
+                class="text-white font-bold text-2xl"
+                style="font-family: &quot;Playfair Display&quot;, serif"
+              >
+                4.9★
+              </p>
+              <p
+                class="text-xs text-white/50 font-mono uppercase tracking-wider"
+              >
+                Average Rating
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero-scroll">
+        <span>SCROLL</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M12 5v14M5 12l7 7 7-7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Wave -->
+    <div
+      class="wave-divider"
+      style="background: var(--green-deep); margin-bottom: -2px"
+    >
+      <svg
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"
+          fill="#FAFAF8"
+        />
+      </svg>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- FEATURES / KEUNGGULAN -->
+    <!-- ============================================ -->
+    <section id="features" class="py-24 px-6" style="background: var(--white)">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+          <p class="section-label">Why Choose Us</p>
+          <h2
+            class="font-display text-4xl md:text-5xl font-bold"
+            style="color: var(--green-deep)"
+          >
+            Not a Tour.<br />An <em>Initiation.</em>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="feature-card fade-up">
+            <div class="feature-icon">🧭</div>
+            <p
+              class="font-mono text-xs tracking-widest mb-3"
+              style="color: var(--green-sage)"
+            >
+              LOCAL GUIDE
+            </p>
+            <h3
+              class="font-display text-2xl font-bold mb-4"
+              style="color: var(--green-deep)"
+            >
+              Ucok Guides You Deep
+            </h3>
+            <p style="color: var(--text-muted)" class="leading-relaxed text-sm">
+              Your guide Ucok has lived in these jungles his whole life. No GPS
+              needed — he reads the forest. You'll go places no commercial tour
+              ever reaches.
+            </p>
+          </div>
+
+          <div class="feature-card fade-up">
+            <div class="feature-icon">🪬</div>
+            <p
+              class="font-mono text-xs tracking-widest mb-3"
+              style="color: var(--green-sage)"
+            >
+              REAL CULTURE
+            </p>
+            <h3
+              class="font-display text-2xl font-bold mb-4"
+              style="color: var(--green-deep)"
+            >
+              Sleep in a Uma
+            </h3>
+            <p style="color: var(--text-muted)" class="leading-relaxed text-sm">
+              Stay in a traditional Mentawai longhouse, eat what the tribe eats,
+              watch the shaman work, and earn your hand-tapped tattoo — if you
+              want it.
+            </p>
+          </div>
+
+          <div class="feature-card fade-up">
+            <div class="feature-icon">🌊</div>
+            <p
+              class="font-mono text-xs tracking-widest mb-3"
+              style="color: var(--green-sage)"
+            >
+              SMALL GROUPS
+            </p>
+            <h3
+              class="font-display text-2xl font-bold mb-4"
+              style="color: var(--green-deep)"
+            >
+              Max 8 Per Trip
+            </h3>
+            <p style="color: var(--text-muted)" class="leading-relaxed text-sm">
+              We cap every departure at 8 travelers. This isn't a cattle tour —
+              it's an intimate expedition. You'll leave with new best friends
+              and a new worldview.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PACKAGES -->
+    <!-- ============================================ -->
+    <section class="py-24 px-6" style="background: var(--sand)">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 fade-up"
+        >
+          <div>
+            <p class="section-label">Our Packages</p>
+            <h2
+              class="font-display text-4xl md:text-5xl font-bold"
+              style="color: var(--green-deep)"
+            >
+              Choose Your<br /><em>Adventure Level</em>
+            </h2>
+          </div>
+          <a
+            href="pages/packages.html"
+            class="btn-primary self-start md:self-auto"
+            style="background: var(--green-deep); color: white"
+          >
+            View All Packages
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                d="M5 12h14M12 5l7 7-7 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Package 1 -->
+          <div class="trip-card fade-up">
+            <div class="relative">
+              <span class="trip-card-badge">🔥 Most Popular</span>
+              <img
+                src="images/f520f957-34db-472b-aa61-48a6161e5f26.jpeg"
+                alt="Surf in Mentawai"
+                class="trip-card-img"
+              />
+            </div>
+            <div class="p-6">
+              <h3
+                class="font-display text-xl font-bold mb-2"
+                style="color: var(--green-deep)"
+              >
+                3 Days Trip
+              </h3>
+              <p
+                class="text-sm mb-4 leading-relaxed"
+                style="color: var(--text-muted)"
+              >
+                Perfect introduction to Mentawai culture. Trek through the
+                rainforest, stay in a traditional Uma, and experience authentic
+                tribal life.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🌿 Jungle Trek</span
+                >
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🏡 Uma Stay</span
+                >
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🎣 Traditional Fishing</span
+                >
+              </div>
+              <div class="flex items-end justify-between">
+                <a
+                  href="pages/trip-detail.html"
+                  class="btn-primary py-2 px-4 text-sm"
+                  >Details</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Package 2 -->
+          <div class="trip-card fade-up">
+            <div class="relative">
+              <span
+                class="trip-card-badge"
+                style="background: var(--green-sage); color: white"
+                >🎖 Immersive</span
+              >
+              <img
+                src="images/01-scaled.jpg"
+                alt="Mentawai Culture"
+                class="trip-card-img"
+              />
+            </div>
+            <div class="p-6">
+              <h3
+                class="font-display text-xl font-bold mb-2"
+                style="color: var(--green-deep)"
+              >
+                4 Days Trip
+              </h3>
+              <p
+                class="text-sm mb-4 leading-relaxed"
+                style="color: var(--text-muted)"
+              >
+                Spend two full days with the Mentawai tribe, gaining deeper
+                cultural insights and stronger connections with local families.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🧙 Shaman Experience</span
+                >
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🌿 Jungle Exploration</span
+                >
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🏡 Cultural Immersion</span
+                >
+              </div>
+              <div class="flex items-end justify-between">
+                <a
+                  href="pages/trip-detail.html"
+                  class="btn-primary py-2 px-4 text-sm"
+                  >Details</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Package 3 -->
+          <div
+            class="trip-card fade-up"
+            style="border: 2px solid var(--green-deep)"
+          >
+            <div class="relative">
+              <span
+                class="trip-card-badge"
+                style="background: #f59e0b; color: var(--green-deep)"
+                >⚡ Premium</span
+              >
+              <img
+                src="images/27-scaled.webp"
+                alt="Ultimate Mentawai"
+                class="trip-card-img"
+              />
+            </div>
+            <div class="p-6">
+              <h3
+                class="font-display text-xl font-bold mb-2"
+                style="color: var(--green-deep)"
+              >
+                5 Days Trip
+              </h3>
+              <p
+                class="text-sm mb-4 leading-relaxed"
+                style="color: var(--text-muted)"
+              >
+                The most complete Mentawai experience with three full days
+                living alongside the tribe and fully embracing their traditional
+                way of life.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >👥 Tribal Connection</span
+                >
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🏡 Extended Uma Stay</span
+                >
+                <span
+                  class="text-xs px-2 py-1 rounded"
+                  style="
+                    background: var(--green-pale);
+                    color: var(--green-deep);
+                  "
+                  >🌿 Deep Immersion</span
+                >
+              </div>
+              <div class="flex items-end justify-between">
+                <a
+                  href="pages/trip-detail.html"
+                  class="btn-primary py-2 px-4 text-sm"
+                  >Details</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STATS -->
+    <!-- ============================================ -->
+    <section
+      id="stats"
+      class="py-16 px-6"
+      style="background: var(--green-deep)"
+    >
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+      >
+        <div>
+          <p class="font-display text-5xl font-bold text-white">
+            <span data-target="500">0</span>+
+          </p>
+          <p
+            class="font-mono text-xs tracking-widest mt-2"
+            style="color: var(--green-light)"
+          >
+            ADVENTURERS GUIDED
+          </p>
+        </div>
+        <div>
+          <p class="font-display text-5xl font-bold text-white">
+            <span data-target="12">0</span>
+          </p>
+          <p
+            class="font-mono text-xs tracking-widest mt-2"
+            style="color: var(--green-light)"
+          >
+            YEARS IN THE FIELD
+          </p>
+        </div>
+        <div>
+          <p class="font-display text-5xl font-bold text-white">
+            <span data-target="6">0</span>
+          </p>
+          <p
+            class="font-mono text-xs tracking-widest mt-2"
+            style="color: var(--green-light)"
+          >
+            VILLAGES PARTNERED
+          </p>
+        </div>
+        <div>
+          <p class="font-display text-5xl font-bold text-white">
+            <span data-target="98">0</span>%
+          </p>
+          <p
+            class="font-mono text-xs tracking-widest mt-2"
+            style="color: var(--green-light)"
+          >
+            WOULD RETURN
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- TESTIMONIALS -->
+    <!-- ============================================ -->
+    <section
+      id="testimonials"
+      class="py-24 px-6"
+      style="background: var(--white)"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+          <p class="section-label">Testimonials</p>
+          <h2
+            class="font-display text-4xl md:text-5xl font-bold"
+            style="color: var(--green-deep)"
+          >
+            Real Words from<br /><em>Real Wanderers</em>
+          </h2>
+        </div>
+
+        <div class="relative">
+          <button class="testimonial-prev">❮</button>
+
+          <div id="testimonialSlider" class="testimonial-slider">
+            <div class="testimonial-card fade-up">
+              <div class="stars text-sm mb-3">★★★★★</div>
+              <p
+                class="text-sm leading-relaxed mb-5"
+                style="color: var(--espresso)"
+              >
+                "Hi my name is Thomas this is my review of my trip to the
+                mentawai tribe with Ucok in 2023 Ucok is an amazing Guide to go
+                to the Mentawai. We spent 5 days in the jungle with Ucok. He
+                speaks perfectly Mentawai and was able to translate everything,
+                talks about the culture and the history of the Mentawai people
+                that he really knows well and he is a true skilled survivor! He
+                is always happy, smiling, willing to share his experience to
+                help us feel comfortable in the jungle and understand the
+                complexity of the Tribe culture and customs. He has a huge
+                experience of the Mentawai tribes, is really close to the Shaman
+                and his family so you can really experience things to him the
+                way of living of the shaman. More than a guide, he became a
+                friend and I can honestly highly recommend Ucok if you plan to
+                book an experience in the Mentawai tribes"
+              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full overflow-hidden"
+                  style="background: var(--green-pale)"
+                >
+                  <img
+                    src="https://i.pravatar.cc/80?img=11"
+                    alt="Jake"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-semibold text-sm"
+                    style="color: var(--green-deep)"
+                  >
+                    Thomas
+                  </p>
+                  <p class="text-xs font-mono" style="color: var(--text-muted)">
+                    🇺🇸 Oregon, USA · 5D4N Package
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="testimonial-card fade-up"
+              style="border-color: var(--green-sage)"
+            >
+              <div class="stars text-sm mb-3">★★★★★</div>
+              <p
+                class="text-sm leading-relaxed mb-5"
+                style="color: var(--espresso)"
+              >
+                "In June 2023, we spent 5 days on Siberut with Bang Ucok and his
+                team. We are a family from Jakarta with a 10 year old son. We
+                wanted an authentic experience with the Suku Mentawai and got
+                that with Bang Ucok’s expertise and guidance. He was more than a
+                guide. He was a caring friend to our family and his assistants
+                Man Shanto and Norobu were always ready with food, coffee or
+                tea. He speaks the tribe’s language and his knowledge of their
+                culture and the jungle really added to the trip. When we had
+                questions. Bang Ucok’s style was to let the tribe answer those
+                questions themselves and only supplemented the answer when
+                needed. We went for the experience and returned with great
+                memories and new friendships."
+              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full overflow-hidden"
+                  style="background: var(--green-pale)"
+                >
+                  <img
+                    src="https://i.pravatar.cc/80?img=44"
+                    alt="Sophie"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-semibold text-sm"
+                    style="color: var(--green-deep)"
+                  >
+                    Nita and Ethan
+                  </p>
+                  <p class="text-xs font-mono" style="color: var(--text-muted)">
+                    🇫🇷 Lyon, France · 7D6N Package
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card fade-up">
+              <div class="stars text-sm mb-3">★★★★★</div>
+              <p
+                class="text-sm leading-relaxed mb-5"
+                style="color: var(--espresso)"
+              >
+                "Dear Ucok, thank you so much for taking us on the adventure of
+                a lifetime. Even on very short notice you managed to organise
+                the trip for us and explained everything we needed to know
+                beforehand. During the 4 days you took excellent care of us,
+                providing delicious meals and detailed information about the
+                life and ways of the Mentawai Tribe. That way, we gained a lot
+                of insight into their way of life, their customs and traditions.
+                We felt very welcome and Marcus and his family were nothing but
+                nice to us. We were very lucky to witness the gathering of
+                friends and family to tow handmade canoes through the rainforest
+                and celebrate afterwards with a feast. It was impressive to see
+                the closely knit community of the Mentawai Tribe working, eating
+                and enjoying their time smoking together, just as we enjoyed our
+                stay with them. Thank you for being our guide and providing us
+                with the opportunity to gain experiences that will last a
+                lifetime."
+              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full overflow-hidden"
+                  style="background: var(--green-pale)"
+                >
+                  <img
+                    src="https://i.pravatar.cc/80?img=32"
+                    alt="Liam"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-semibold text-sm"
+                    style="color: var(--green-deep)"
+                  >
+                    Elisabeth & Bernhard
+                  </p>
+                  <p class="text-xs font-mono" style="color: var(--text-muted)">
+                    🇦🇺 Melbourne, AUS · 3D2N Package
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card fade-up">
+              <div class="stars text-sm mb-3">★★★★★</div>
+              <p
+                class="text-sm leading-relaxed mb-5"
+                style="color: var(--espresso)"
+              >
+                "We only had a few days left in Sumatra, Ucok was very flexible
+                and open to our wishes. So we were able to plan a 1-day tour at
+                very short notice in the evening before we were supposed to
+                start. Ucok took us to dreamlike hidden rivers and beaches,
+                southeast of Padang. Ucok is a very experienced guide and was
+                able to tell us a lot about the local nature and culture. With
+                Ucok we also felt safe and well advised at all times. When we
+                return to Sumatra we will explore the Mentawai Islands,
+                hopefully with Ucok as our guide."
+              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full overflow-hidden"
+                  style="background: var(--green-pale)"
+                >
+                  <img
+                    src="https://i.pravatar.cc/80?img=11"
+                    alt="Jake"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-semibold text-sm"
+                    style="color: var(--green-deep)"
+                  >
+                    Elena & Constantin
+                  </p>
+                  <p class="text-xs font-mono" style="color: var(--text-muted)">
+                    🇺🇸 Oregon, USA · 5D4N Package
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card fade-up">
+              <div class="stars text-sm mb-3">★★★★★</div>
+              <p
+                class="text-sm leading-relaxed mb-5"
+                style="color: var(--espresso)"
+              >
+                "The impression of a trip to the Mentawai tribe in Sumatra was
+                formed from opposites, to see with your own eyes and plunge into
+                the life of a primitive tribe, and not just to be a bystander,
+                but to be a part of life for a few days is a colossal experience
+                that allows you to expand the boundaries of your capabilities,
+                to come face to face with fears (to spend a few nights in the
+                jungle, to be away from civilization, to find out what a real
+                tropical forest is), admiration (dexterity and endurance of the
+                leader, the identity of the dwelling). A real test of strength,
+                but such emotions were worth it! Thanks to an experienced guide
+                , the trip turned out to be one of the most memorable in my life
+                !"
+              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full overflow-hidden"
+                  style="background: var(--green-pale)"
+                >
+                  <img
+                    src="https://i.pravatar.cc/80?img=11"
+                    alt="Jake"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-semibold text-sm"
+                    style="color: var(--green-deep)"
+                  >
+                    Maxim
+                  </p>
+                  <p class="text-xs font-mono" style="color: var(--text-muted)">
+                    🇺🇸 Oregon, USA · 5D4N Package
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card fade-up">
+              <div class="stars text-sm mb-3">★★★★★</div>
+              <p
+                class="text-sm leading-relaxed mb-5"
+                style="color: var(--espresso)"
+              >
+                "What an incredible experience!! I had the most amazing time
+                visiting the Mentawai tribe with Ucok! Spending time with the
+                indigenous people was a once in a lifetime experience. One of
+                which I’ll never forget. Ucok is the best! He arranged all of
+                the transport from Padang over to Siberut and through the
+                rainforest until we arrived with the Mentawai tribe. Ucok was
+                the best guide we could have wished for, he communicated with
+                the tribe and translated for us and was always so happy and
+                helpful which really made our trip even more amazing. Thank you
+                for such an amazing trip Ucok!!!"
+              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full overflow-hidden"
+                  style="background: var(--green-pale)"
+                >
+                  <img
+                    src="https://i.pravatar.cc/80?img=11"
+                    alt="Jake"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-semibold text-sm"
+                    style="color: var(--green-deep)"
+                  >
+                    Richard
+                  </p>
+                  <p class="text-xs font-mono" style="color: var(--text-muted)">
+                    🇺🇸 Oregon, USA · 5D4N Package
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card fade-up">
+              <div class="stars text-sm mb-3">★★★★★</div>
+              <p
+                class="text-sm leading-relaxed mb-5"
+                style="color: var(--espresso)"
+              >
+                "Dear Ucok, We had an amazing experience which we will never
+                forget. The Mentawai tribe welcomed us enthusiastically. If felt
+                like home. You have such a good connection with this family, you
+                explained everything about the life of these people. Everything
+                was very well organized and although this is a complete
+                different world, it felt okay and safe. We could see that you
+                enjoyed as well being there. Ucok, thank you very much for this
+                fantastic experience! From Maja and Sipko from Belanda"
+              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full overflow-hidden"
+                  style="background: var(--green-pale)"
+                >
+                  <img
+                    src="https://i.pravatar.cc/80?img=11"
+                    alt="Jake"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-semibold text-sm"
+                    style="color: var(--green-deep)"
+                  >
+                    Maja and Sipko
+                  </p>
+                  <p class="text-xs font-mono" style="color: var(--text-muted)">
+                    🇺🇸 Oregon, USA · 5D4N Package
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="testimonial-next">❯</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- INSTAGRAM FEED -->
+    <!-- ============================================ -->
+    <section class="py-20 px-6" style="background: var(--sand)">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-10 fade-up">
+          <p class="section-label">@mentawai.odyssey</p>
+          <h2
+            class="font-display text-3xl font-bold"
+            style="color: var(--green-deep)"
+          >
+            Life in the Wild
+          </h2>
+        </div>
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
+          <div class="ig-item">
+            <img
+              src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=400&q=80"
+              alt="IG 1"
+            />
+            <div class="ig-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="ig-item">
+            <img
+              src="https://images.unsplash.com/photo-1501179691627-eeaa65ea017c?w=400&q=80"
+              alt="IG 2"
+            />
+            <div class="ig-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="ig-item">
+            <img
+              src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=80"
+              alt="IG 3"
+            />
+            <div class="ig-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="ig-item">
+            <img
+              src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&q=80"
+              alt="IG 4"
+            />
+            <div class="ig-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="ig-item">
+            <img
+              src="https://images.unsplash.com/photo-1511316695145-4992006ffddb?w=400&q=80"
+              alt="IG 5"
+            />
+            <div class="ig-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="ig-item">
+            <img
+              src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400&q=80"
+              alt="IG 6"
+            />
+            <div class="ig-overlay">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-6">
+          <a
+            href="https://instagram.com/mentawai.odyssey"
+            target="_blank"
+            class="btn-primary"
+            style="background: var(--green-deep)"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"
+              />
+            </svg>
+            Follow @mentawai.odyssey
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer id="contact" class="py-16 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-3 mb-5">
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background: var(--green-sage)"
+              >
+                <span class="text-white font-bold font-mono">MO</span>
+              </div>
+              <span
+                class="text-white font-bold text-xl"
+                style="font-family: &quot;Playfair Display&quot;, serif"
+                >Mentawai Odyssey</span
+              >
+            </div>
+            <p
+              class="text-sm leading-relaxed mb-6"
+              style="color: rgba(255, 255, 255, 0.6)"
+            >
+              The wildest island in Indonesia, guided by people who were born
+              here. We don't show you Mentawai — we let Mentawai show you
+              yourself.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full flex items-center justify-center"
+                style="background: rgba(255, 255, 255, 0.1)"
+              >
+                <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full flex items-center justify-center"
+                style="background: rgba(255, 255, 255, 0.1)"
+              >
+                <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <p
+              class="font-mono text-xs tracking-widest mb-5"
+              style="color: var(--green-sage)"
+            >
+              QUICK LINKS
+            </p>
+            <div class="flex flex-col gap-3">
+              <a href="index.html" class="nav-link text-sm">Home</a>
+              <a href="pages/packages.html" class="nav-link text-sm"
+                >All Packages</a
+              >
+              <a href="pages/trip-detail.html" class="nav-link text-sm"
+                >Trip Detail</a
+              >
+              <a href="#testimonials" class="nav-link text-sm">Testimonials</a>
+            </div>
+          </div>
+          <div>
+            <p
+              class="font-mono text-xs tracking-widest mb-5"
+              style="color: var(--green-sage)"
+            >
+              CONTACT
+            </p>
+            <div
+              class="flex flex-col gap-3 text-sm"
+              style="color: rgba(255, 255, 255, 0.6)"
+            >
+              <p>📍 Tuapejat, Kepulauan Mentawai, West Sumatra</p>
+              <p>📞 +62 812-3456-7890</p>
+              <p>✉️ hello@mentawaiodyssey.com</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t pt-8 flex flex-col md:flex-row justify-between gap-4"
+          style="border-color: rgba(255, 255, 255, 0.1)"
+        >
+          <p class="text-xs" style="color: rgba(255, 255, 255, 0.4)">
+            © 2025 Mentawai Odyssey. Crafted with love for the wild.
+          </p>
+          <p class="text-xs" style="color: rgba(255, 255, 255, 0.4)">
+            Privacy Policy · Terms of Service
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- STICKY BOOK NOW -->
+    <!-- ============================================ -->
+    <div class="sticky-book">
+      <button onclick="openBooking()" class="btn-primary shadow-2xl">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        Book Now
+      </button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- BOOKING MODAL -->
+    <!-- ============================================ -->
+    <div id="bookingModal" class="modal-overlay">
+      <div class="modal-box">
+        <div class="flex justify-between items-start mb-6">
+          <div>
+            <h3
+              class="font-display text-2xl font-bold"
+              style="color: var(--green-deep)"
+            >
+              Reserve Your Spot
+            </h3>
+            <p class="text-sm mt-1" style="color: var(--text-muted)">
+              Fill in your details — takes 60 seconds.
+            </p>
+          </div>
+          <button
+            onclick="closeBooking()"
+            class="p-2 rounded-full hover:bg-gray-100"
+            style="color: var(--text-muted)"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div id="bookingForm">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input
+              id="bookName"
+              type="text"
+              class="form-input"
+              placeholder="e.g. Sophie Dubois"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input
+              id="bookEmail"
+              type="email"
+              class="form-input"
+              placeholder="sophie@example.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Select Package</label>
+            <select id="tripPackage" class="form-input">
+              <option>Mentawai Jungle Surf 3D2N</option>
+              <option>Deep Culture Immersion 5D4N</option>
+              <option>Ultimate Mentawai 7D6N</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Trip Date</label>
+              <input id="bookDate" type="date" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">No. of People</label>
+              <input
+                id="bookPeople"
+                type="number"
+                min="1"
+                max="8"
+                value="2"
+                class="form-input"
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            onclick="
+              document
+                .getElementById('bookingForm')
+                .dispatchEvent(
+                  new Event('submit', { cancelable: true, bubbles: true }),
+                )
+            "
+            class="btn-primary w-full justify-center mt-2"
+          >
+            Generate Invoice →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- INVOICE MODAL -->
+    <!-- ============================================ -->
+    <div id="invoiceModal" class="modal-overlay">
+      <div class="modal-box">
+        <div class="text-center mb-6">
+          <div
+            class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
+            style="background: var(--green-pale)"
+          >
+            <span class="text-2xl">🌿</span>
+          </div>
+          <h3
+            class="font-display text-2xl font-bold"
+            style="color: var(--green-deep)"
+          >
+            Your Booking Summary
+          </h3>
+          <p class="text-sm mt-1 font-mono" style="color: var(--text-muted)">
+            Booking Ref:
+            <span
+              id="inv-code"
+              class="font-bold"
+              style="color: var(--green-mid)"
+              >MTW-000000</span
+            >
+          </p>
+        </div>
+
+        <div class="invoice-box">
+          <div class="invoice-row">
+            <span style="color: var(--text-muted)">Name</span
+            ><span id="inv-name" class="font-semibold">—</span>
+          </div>
+          <div class="invoice-row">
+            <span style="color: var(--text-muted)">Email</span
+            ><span
+              id="inv-email"
+              class="font-semibold text-right max-w-48 truncate"
+              >—</span
+            >
+          </div>
+          <div class="invoice-row">
+            <span style="color: var(--text-muted)">Package</span
+            ><span id="inv-pkg" class="font-semibold text-right">—</span>
+          </div>
+          <div class="invoice-row">
+            <span style="color: var(--text-muted)">Date</span
+            ><span id="inv-date" class="font-semibold">—</span>
+          </div>
+          <div class="invoice-row">
+            <span style="color: var(--text-muted)">Participants</span
+            ><span id="inv-people" class="font-semibold">—</span>
+          </div>
+          <div class="invoice-row">
+            <span style="color: var(--text-muted)">Price per person</span
+            ><span id="inv-price" class="font-semibold">—</span>
+          </div>
+          <div
+            class="invoice-row invoice-total mt-2 pt-2"
+            style="border-top: 2px solid var(--green-sage)"
+          >
+            <span>Total Estimated</span>
+            <span id="inv-total">—</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-center mb-5" style="color: var(--text-muted)">
+          A 30% deposit secures your spot. Final payment 14 days before
+          departure. Screenshot and send this via WhatsApp for quick
+          confirmation.
+        </p>
+
+        <a
+          id="waConfirmBtn"
+          href="#"
+          target="_blank"
+          class="btn-wa w-full justify-center"
+          style="display: flex"
+        >
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          Confirm via WhatsApp
+        </a>
+        <button
+          onclick="closeInvoice()"
+          class="w-full mt-3 py-3 text-sm font-semibold rounded-lg"
+          style="background: var(--green-pale); color: var(--green-deep)"
+        >
+          Back to Website
+        </button>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const slider = document.getElementById("testimonialSlider");
+
+        document
+          .querySelector(".testimonial-next")
+          .addEventListener("click", () => {
+            slider.scrollBy({
+              left: 420,
+              behavior: "smooth",
+            });
+          });
+
+        document
+          .querySelector(".testimonial-prev")
+          .addEventListener("click", () => {
+            slider.scrollBy({
+              left: -420,
+              behavior: "smooth",
+            });
+          });
+
+        setInterval(() => {
+          slider.scrollBy({
+            left: 420,
+            behavior: "smooth",
+          });
+
+          if (
+            slider.scrollLeft + slider.clientWidth >=
+            slider.scrollWidth - 10
+          ) {
+            slider.scrollTo({
+              left: 0,
+              behavior: "smooth",
+            });
+          }
+        }, 5000);
+      });
+    </script>
+  </body>
+</html>
