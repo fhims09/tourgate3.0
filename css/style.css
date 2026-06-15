@@ -119,8 +119,8 @@ body {
   align-items: center;
   gap: 8px;
   background: var(--green-sage);
-  color: var(--green-deep);
-  font-weight: 700;
+  color: whitesmoke;
+  font-weight: 100;
   padding: 14px 28px;
   border-radius: 6px;
   border: none;

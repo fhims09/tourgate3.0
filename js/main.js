@@ -112,9 +112,9 @@ if (bookingForm) {
     const pkg = document.getElementById('tripPackage').value;
 
     const prices = {
-      'Mentawai Jungle Surf 3D2N': 2800000,
-      'Deep Culture Immersion 5D4N': 5500000,
-      'Ultimate Mentawai 7D6N': 8500000,
+      '3 Days Trip Package': 2800000,
+      '4 Days Trip Package': 5500000,
+      '5 Days Trip Package': 8500000,
     };
 
     const price = prices[pkg] || 2800000;
