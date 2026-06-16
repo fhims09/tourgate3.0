@@ -142,7 +142,7 @@ if (bookingForm) {
     );
 
     const waBtn = document.getElementById('waConfirmBtn');
-    if (waBtn) waBtn.href = `https://wa.me/6281234567890?text=${waMsg}`;
+    if (waBtn) waBtn.href = `https://wa.me/628126774808?text=${waMsg}`;
 
     // Switch modals
     closeBooking();
